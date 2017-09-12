@@ -6,7 +6,8 @@ var dataBuf = "";
 // time, left top, right top, left middle, right middle, bottom
 var T, LT, RT, LM, RM, B;
 var fs = require('fs');
-var writeStream = fs.createWriteStream("Data/data.csv");
+var writeStream = fs.createWriteStream("C:/pMouse/Data/data.csv");
+
 /********************************************************************************************************/
 /*Start of Bluetooth functions*/
 bleSerial.on('data', function(data){

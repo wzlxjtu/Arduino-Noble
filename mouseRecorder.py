@@ -7,6 +7,7 @@ import thread
 import time
 import win32gui
 import win32con
+import os
 
 def MouseHook(threadName):
     # Start the com, loop forever
@@ -123,4 +124,5 @@ win32gui.ShowWindow(win32gui.FindWindow(None, u"pMouseApp"), win32con.SW_MINIMIZ
 
 # Run the GUI
 app.MainLoop()
+os.system("taskkill /im electron.exe")
 
