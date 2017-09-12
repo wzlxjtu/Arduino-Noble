@@ -1,0 +1,3 @@
+http://mouseaccuracy.com/
+Easy: Slow, Large
+Hard: Fast, Tiny
