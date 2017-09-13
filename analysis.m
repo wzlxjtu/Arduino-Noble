@@ -1,7 +1,7 @@
 clear;close all;clc
 
 % Load data
-data = 'Data/log_1505337041';
+data = 'Data/log_1505342159';
 pressure = xlsread([data,'.csv']);
 mouse = dlmread([data,'.txt'], ' ', 6, 0);
 mouse(:,end) = [];
@@ -9,8 +9,8 @@ mouse(:,end) = [];
 % figure;plot(mouse(:,2),mouse(:,3))
 
 % Get timeline
-Start = mouse((mouse(:,2) == -1),1);
-End = mouse((mouse(:,2) == -2),1);
+Start = mouse((mouse(:,2) == -0.1),1);
+End = mouse((mouse(:,2) == -0.2),1);
 
 
 % Data segment

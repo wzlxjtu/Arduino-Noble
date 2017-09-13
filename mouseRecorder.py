@@ -25,13 +25,13 @@ def OnButtonClick(event):
     current_time = time.time()
     # set the toggle button activity
     if Button.GetValue():
-        print current_time,"-1 -1 -1";
-        file_object.write(str(current_time) + " -1 -1 -1\n");
+        print current_time,"-0.1 -0.1 -0.1";
+        file_object.write(str(current_time) + " -0.1 -0.1 -0.1\n");
         Button.SetLabel('End')
         hm.HookMouse()
     else:
-        print current_time,"-2 -2 -2";
-        file_object.write(str(current_time) + " -2 -2 -2\n");
+        print current_time,"-0.2 -0.2 -0.2";
+        file_object.write(str(current_time) + " -0.2 -0.2 -0.2\n");
         Button.SetLabel('Start')
         hm.UnhookMouse()
 
