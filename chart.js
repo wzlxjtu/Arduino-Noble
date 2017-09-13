@@ -6,8 +6,10 @@ var dataBuf = "";
 // time, left top, right top, left middle, right middle, bottom
 var T, LT, RT, LM, RM, B;
 var fs = require('fs');
-var writeStream = fs.createWriteStream("C:/pMouse/Data/data.csv");
+var date = new Date();
 
+var file_name = "C:/pMouse/Data/log_"+String(Math.round(date.getTime() / 1000)-1)+".csv";
+var writeStream = fs.createWriteStream(file_name);
 /********************************************************************************************************/
 /*Start of Bluetooth functions*/
 bleSerial.on('data', function(data){
@@ -152,5 +154,5 @@ function update() {
     seriesd.append(date.getTime(),LM);
     seriese.append(date.getTime(),RM);
     seriesf.append(date.getTime(),B);
-	writeStream.write(date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+","+T+","+LT+","+RT+","+LM+","+RM+","+B+'\n');
+	writeStream.write(date.getTime() / 1000+","+T+","+LT+","+RT+","+LM+","+RM+","+B+'\n');
 }

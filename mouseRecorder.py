@@ -21,15 +21,17 @@ def FrequencyControl(threadName):
         log_flag = True
 
 def OnButtonClick(event):
+    global current_time
+    current_time = time.time()
     # set the toggle button activity
     if Button.GetValue():
-        print "-1 -2 -3 -4\n";
-        file_object.write("-1 -2 -3 -4\n");
+        print current_time,"-1 -1 -1";
+        file_object.write(str(current_time) + " -1 -1 -1\n");
         Button.SetLabel('End')
         hm.HookMouse()
     else:
-        print "-4 -3 -2 -1\n";
-        file_object.write("-4 -3 -2 -1\n");
+        print current_time,"-2 -2 -2";
+        file_object.write(str(current_time) + " -2 -2 -2\n");
         Button.SetLabel('Start')
         hm.UnhookMouse()
 
@@ -43,21 +45,21 @@ def OnMouseButtons(event):
     global time_stamp, current_time
     current_time = time.time()
     if event.Message == 513:
-        file_object.write("{:.3f}".format(current_time - time_stamp) + " " + str(event.Position[0]) + " " + str(
+        file_object.write(str(current_time) + " " + str(event.Position[0]) + " " + str(
             event.Position[1]) + " " + "1 \n")
-        print "{:.3f}".format(current_time - time_stamp), event.Position[0], event.Position[1], 1
+        print current_time, event.Position[0], event.Position[1], 1
     if event.Message == 514:
-        file_object.write("{:.3f}".format(current_time - time_stamp) + " " + str(event.Position[0]) + " " + str(
+        file_object.write(str(current_time) + " " + str(event.Position[0]) + " " + str(
             event.Position[1]) + " " + "2 \n")
-        print "{:.3f}".format(current_time - time_stamp), event.Position[0], event.Position[1], 2
+        print current_time, event.Position[0], event.Position[1], 2
     if event.Message == 516:
-        file_object.write("{:.3f}".format(current_time - time_stamp) + " " + str(event.Position[0]) + " " + str(
+        file_object.write(str(current_time) + " " + str(event.Position[0]) + " " + str(
             event.Position[1]) + " " + "3 \n")
-        print "{:.3f}".format(current_time - time_stamp), event.Position[0], event.Position[1], 3
+        print current_time, event.Position[0], event.Position[1], 3
     if event.Message == 517:
-        file_object.write("{:.3f}".format(current_time - time_stamp) + " " + str(event.Position[0]) + " " + str(
+        file_object.write(str(current_time) + " " + str(event.Position[0]) + " " + str(
             event.Position[1]) + " " + "4 \n")
-        print "{:.3f}".format(current_time - time_stamp), event.Position[0], event.Position[1], 4
+        print current_time, event.Position[0], event.Position[1], 4
     time_stamp = current_time
     return True
 
@@ -66,8 +68,8 @@ def OnMouseMove(event):
     global log_flag, time_stamp, current_time
     if log_flag:
         current_time = time.time()
-        file_object.write("{:.3f}".format(current_time - time_stamp)+" "+str(event.Position[0])+" "+str(event.Position[1])+" "+"0 \n")
-        print "{:.3f}".format(current_time - time_stamp), event.Position[0], event.Position[1], 0
+        file_object.write(str(current_time)+" "+str(event.Position[0])+" "+str(event.Position[1])+" "+"0 \n")
+        print current_time, event.Position[0], event.Position[1], 0
         log_flag = False
         time_stamp = current_time
     # return True to pass the event to other handlers
@@ -83,10 +85,12 @@ current_time = launch_time
 
 # Open a file
 file_object = open("data/log_"+str(int(launch_time))+".txt", "w")
-file_object.write("# Message code: 0 - Mouse move, 1 - Left button down\n# 2 - Left button up, 3 - Right button down, 4 - Right button up\n#\n")
+file_object.write("# Message code: 0 - Mouse move, 1 - Left button down\n# 2 - Left button up, 3 - Right button down, 4 - Right button up\n")
+file_object.write("# -1 - Start, -2 - End\n#\n")
 file_object.write("#("+str(launch_time)+") "+time.asctime(time.localtime(launch_time))+"\n")
 file_object.write("#Time #X_pos #Y_pos #Message\n")
-print "# Message code: 0 - Mouse move, 1 - Left button down\n# 2 - Left button up, 3 - Right button down, 4 - Right button up\n"
+print "# Message code: 0 - Mouse move, 1 - Left button down\n# 2 - Left button up, 3 - Right button down, 4 - Right button up"
+print "# -1 - Start, -2 - End\n"
 print "#("+str(launch_time)+") "+time.asctime(time.localtime(launch_time))
 print "#Time #X_pos #Y_pos #Message"
 
